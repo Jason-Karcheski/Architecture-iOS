@@ -44,8 +44,7 @@ struct NavigationView: View {
         case .createAccount:
             CreateAccountScreen(onNavigate: { path.onNavigationAction(for: $0) })
         case .dashboard(let userId):
-            Text("Dashboard Screen")
-            Text("User ID: \(userId)")
+            DashboardScreen(userId: userId, onNavigate: { path.onNavigationAction(for: $0) })
         case .signIn:
             SignInScreen(onNavigate: { path.onNavigationAction(for: $0) })
         }

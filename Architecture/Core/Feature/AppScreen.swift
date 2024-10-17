@@ -17,7 +17,9 @@ struct AppScreen<Content: View>: View {
     }
     
     var body: some View {
-        content
+        VStack {
+            content
+        }
     }
 }
 

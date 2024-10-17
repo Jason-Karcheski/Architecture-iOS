@@ -27,7 +27,8 @@ extension NavigationPath {
     
     /// Navigate back one node on a `NavigationPath`. If the path is empty then nothing will happen.
     mutating private func navigateBack() {
-        if !self.isEmpty {
+        let isStartingScreen = self.count == 1
+        if !self.isEmpty && !isStartingScreen {
             self.removeLast()
         }
     }
