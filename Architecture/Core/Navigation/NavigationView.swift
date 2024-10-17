@@ -32,7 +32,7 @@ struct NavigationView: View {
     private func goToStartScreen() {
         if path.isEmpty {
             let currentUser = vm.getCurrentUser()
-            let route: Route = currentUser != nil ? .dashboard(userId: currentUser!.uuid) : .signIn
+            let route: Route = if let currentUser { .dashboard(userId: currentUser.uuid) } else { .signIn }
             path.onNavigationAction(for: .toRoute(route: route))
         }
     }
