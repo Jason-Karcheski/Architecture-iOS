@@ -9,18 +9,19 @@ import SwiftUI
 
 struct CreateAccountScreen: View {
     
-    let onNavigate: (NavigationAction) -> Void
+    let navigate: (NavigationAction) -> Void
     
     var body: some View {
-        AppScreen {
-            Text("Create Account Screen")
+		AppScreen {
+			AppTopBar(title: "Create Account Screen")
+		} content: {
             Button("Back") {
-                onNavigate(.back)
+                navigate(.back)
             }
         }
     }
 }
 
 #Preview {
-    CreateAccountScreen(onNavigate: { _ in })
+    CreateAccountScreen(navigate: { _ in })
 }

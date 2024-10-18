@@ -9,19 +9,19 @@ import SwiftUI
 
 struct SignInScreen: View {
     
-    let onNavigate: (NavigationAction) -> Void
+    let navigate: (NavigationAction) -> Void
     
     var body: some View {
-        AppScreen {
-            Text("Sign In Screen")
-            
+		AppScreen {
+			AppTopBar(title: "Sign In")
+		} content: {
             Button("Go To Create Account") {
-                onNavigate(.toRoute(route: .createAccount))
+                navigate(.toRoute(.createAccount))
             }
         }
     }
 }
 
 #Preview {
-    SignInScreen(onNavigate: { _ in })
+    SignInScreen(navigate: { _ in })
 }

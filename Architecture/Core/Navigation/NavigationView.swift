@@ -12,7 +12,6 @@ import SwiftUI
 struct NavigationView: View {
     
     @State private var path: NavigationPath = NavigationPath()
-    private var isStartScreen: Bool { path.count <= 1 }
     private let vm: ViewModel = ViewModel()
     
     var body: some View {
@@ -23,7 +22,7 @@ struct NavigationView: View {
                 }
                 .navigationDestination(for: Route.self) { route in
                     destination(for: route)
-                        .navigationBarBackButtonHidden(isStartScreen)
+						.navigationBarBackButtonHidden()
                 }
         }
     }
@@ -33,7 +32,7 @@ struct NavigationView: View {
         if path.isEmpty {
             let currentUser = vm.getCurrentUser()
             let route: Route = if let currentUser { .dashboard(userId: currentUser.uuid) } else { .signIn }
-            path.onNavigationAction(for: .toRoute(route: route))
+            path.onNavigationAction(.toRoute(route))
         }
     }
     
@@ -42,11 +41,11 @@ struct NavigationView: View {
     private func destination(for route: Route) -> some View {
         switch route {
         case .createAccount:
-            CreateAccountScreen(onNavigate: { path.onNavigationAction(for: $0) })
+            CreateAccountScreen(navigate: { path.onNavigationAction($0) })
         case .dashboard(let userId):
-            DashboardScreen(userId: userId, onNavigate: { path.onNavigationAction(for: $0) })
+            DashboardScreen(userId: userId, navigate: { path.onNavigationAction($0) })
         case .signIn:
-            SignInScreen(onNavigate: { path.onNavigationAction(for: $0) })
+            SignInScreen(navigate: { path.onNavigationAction($0) })
         }
     }
 }

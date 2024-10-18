@@ -10,20 +10,21 @@ import SwiftUI
 struct DashboardScreen: View {
     
     let userId: String
-    let onNavigate: (NavigationAction) -> Void
+    let navigate: (NavigationAction) -> Void
     
     var body: some View {
-        AppScreen {
-            Text("Dashboard Screen")
+		AppScreen {
+			AppTopBar(title: "Dashboard")
+		} content: {
             Text("User ID: \(userId)")
             
             Button("Back") {
-                onNavigate(.back)
+                navigate(.back)
             }
         }
     }
 }
 
 #Preview {
-    DashboardScreen(userId: "PREVIEW_ID", onNavigate: { _ in })
+    DashboardScreen(userId: "PREVIEW_ID", navigate: { _ in })
 }

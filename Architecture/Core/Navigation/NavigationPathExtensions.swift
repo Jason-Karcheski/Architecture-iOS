@@ -11,7 +11,7 @@ import SwiftUI
 extension NavigationPath {
     
     /// Perform navigation based on a `NavigationAction`.
-    mutating func onNavigationAction(for action: NavigationAction) {
+    mutating func onNavigationAction(_ action: NavigationAction) {
         switch action {
         case .back:
             self.navigateBack()

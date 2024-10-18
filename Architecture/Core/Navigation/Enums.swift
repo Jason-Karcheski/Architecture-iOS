@@ -12,5 +12,5 @@ enum Route: Hashable {
 
 /// Defines the general actions for navigation.
 enum NavigationAction {
-    case back, toRoute(route: Route)
+    case back, toRoute(_ route: Route)
 }

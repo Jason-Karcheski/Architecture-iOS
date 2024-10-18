@@ -11,15 +11,26 @@ import SwiftUI
 struct AppScreen<Content: View>: View {
     
     let content: Content
+	let topbar: AppTopBar
     
-    init(@ViewBuilder content: () -> Content) {
+    init(
+		topbar: () -> AppTopBar,
+		@ViewBuilder content: () -> Content
+	) {
+		self.topbar = topbar()
         self.content = content()
     }
     
     var body: some View {
-        VStack {
-            content
-        }
+		VStack {
+			topbar
+			
+			VStack {
+				content
+				
+				Spacer()
+			}
+		}
     }
 }
 
